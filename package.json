@@ -1,0 +1,22 @@
+{
+  "name": "tektrans-lib",
+  "version": "0.1.0",
+  "description": "Common library for Node.js code development in TEKTRANS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tektrans/tektrans-lib.git"
+  },
+  "keywords": [
+    "tektrans"
+  ],
+  "author": "Adhidarma Hadiwinoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tektrans/tektrans-lib/issues"
+  },
+  "homepage": "https://github.com/tektrans/tektrans-lib#readme"
+}
