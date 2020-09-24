@@ -2,6 +2,9 @@
  * Some common functions
  */
 
+/**
+ * String-string yang dianggap bernilai FALSE
+ */
 const FALSE_STRINGS = [
     '0',
     'FALSE',
