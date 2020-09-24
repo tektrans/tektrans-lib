@@ -44,7 +44,10 @@ const isAStringWithTrueValue = (str) => {
     if ([
         '0',
         'FALSE',
+        'N/A',
+        'NA',
         'NO',
+        'NULL',
         'DISABLE',
         'DISABLED',
         'OFF',
