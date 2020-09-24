@@ -2,6 +2,24 @@
  * Some common functions
  */
 
+const FALSE_STRINGS = [
+    '0',
+    'FALSE',
+    'N/A',
+    'NA',
+    'NO',
+    'NULL',
+    'DISABLE',
+    'DISABLED',
+    'OFF',
+    'UNCHECK',
+    'UNCHECKED',
+    'UNDEFINED',
+    'UNKNOWN',
+    'INVALID',
+];
+exports.FALSE_STRINGS = FALSE_STRINGS;
+
 /**
  * Sleep promise
  * @param {number} ms - milliseconds to sleep
@@ -41,22 +59,7 @@ const isAStringWithTrueValue = (str) => {
     if (typeof str !== 'string') return false;
     if (!(str || '').trim()) return false;
 
-    if ([
-        '0',
-        'FALSE',
-        'N/A',
-        'NA',
-        'NO',
-        'NULL',
-        'DISABLE',
-        'DISABLED',
-        'OFF',
-        'UNCHECK',
-        'UNCHECKED',
-        'UNDEFINED',
-        'UNKNOWN',
-        'INVALID',
-    ].indexOf((str || '').trim().toUpperCase() >= 0)) return false;
+    if (FALSE_STRINGS.indexOf((str || '').trim().toUpperCase() >= 0)) return false;
 
     return true;
 };
