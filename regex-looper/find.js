@@ -10,7 +10,6 @@ const MODULE_NAME = 'REGEX-LOOPER/FIND';
  * @param {string} rules[].pattern - regex pattern
  * @param {string} [rules[].flags] - regex flags/options
  * @returns {string} result, null if not found
- * @returns {any}
  */
 module.exports = (str, rules, debug) => {
     if (
