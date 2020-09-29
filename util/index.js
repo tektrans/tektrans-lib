@@ -67,3 +67,6 @@ const isAStringWithTrueValue = (str) => {
     return true;
 };
 exports.isAStringWithTrueValue = isAStringWithTrueValue;
+
+const random = (max) => Math.floor(Math.random() * Math.floor(max));
+exports.random = random;
