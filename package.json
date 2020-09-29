@@ -1,6 +1,6 @@
 {
   "name": "tektrans-lib",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Common library for Node.js code development in TEKTRANS",
   "main": "index.js",
   "scripts": {
