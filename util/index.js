@@ -68,5 +68,44 @@ const isAStringWithTrueValue = (str) => {
 };
 exports.isAStringWithTrueValue = isAStringWithTrueValue;
 
+/**
+ * Return an integer beetwen 0 to less than max (inclusive 0, but not max)
+ * @date 2020-10-01
+ * @param {number} max
+ * @returns {number}
+ */
 const random = (max) => Math.floor(Math.random() * Math.floor(max));
 exports.random = random;
+
+/**
+ * Get a random array element
+ * @date 2020-10-01
+ * @param {any[]} arr - array to search
+ * @param {Object} criteria - key/value object to filter
+ * @returns {any} random array element
+ */
+const randomArrayElement = (arr, criteria) => {
+    const criteriaList = criteria && typeof criteria === 'object' && Object.entries(criteria);
+    const criteriaCount = criteriaList && criteriaList.length;
+
+    if (!arr) return null;
+
+    const arrToSearch = !criteriaCount
+        ? arr
+        : arr.filter((arrItem) => {
+            if (typeof arrItem !== 'object') return false;
+
+            const invalid = criteriaList.find((criteriaItem) => {
+                const [key, value] = criteriaItem;
+                return arrItem[key] !== value;
+            });
+
+            return !invalid;
+        });
+
+    if (!arrToSearch || !Array.isArray(arrToSearch) || !arrToSearch.length) return null;
+    const arrCount = arrToSearch.length;
+    const idx = random(arrCount);
+    return arrToSearch[idx];
+};
+exports.randomArrayElement = randomArrayElement;

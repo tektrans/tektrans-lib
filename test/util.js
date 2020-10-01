@@ -1,10 +1,10 @@
 /* global describe it */
 
-require('should');
+const should = require('should');
 
 const util = require('../util');
 
-const MAX_LOOP = 100;
+const MAX_LOOP = 200;
 
 describe('#util', () => {
     describe('#random', () => {
@@ -34,6 +34,50 @@ describe('#util', () => {
                 result.should.greaterThanOrEqual(0, `greater than 0 (${result})`);
                 result.should.lessThanOrEqual(max, `less than or equal ${max} (${result})`);
             }
+        });
+    });
+
+    describe('#randomArrayElement', () => {
+        it('should return correct value from simple array without criteria filter', () => {
+            const arr = ['a', 'b', 'c', 'd'];
+
+            for (let i = 0; i < MAX_LOOP; i += 1) {
+                const item = util.randomArrayElement(arr);
+                // console.log(item);
+                arr.indexOf(item).should.greaterThanOrEqual(0);
+            }
+        });
+
+        it('should return correct value using 1 criteria filter', () => {
+            const arr = [
+                { name: 'a', enabled: true },
+                { name: 'b', enabled: true },
+                { name: 'c', enabled: false },
+                { name: 'd', enabled: true },
+                { name: 'e', enabled: true },
+            ];
+
+            let hasA; let hasB; let hasC; let hasD; let hasE; let hasF;
+            for (let i = 0; i < MAX_LOOP; i += 1) {
+                const itemName = util.randomArrayElement(arr, { enabled: true }).name;
+                // console.log(itemName);
+                should.exists(itemName, 'item name should exists');
+                itemName.should.equalOneOf('a', 'b', 'd', 'e');
+
+                hasA = hasA || itemName === 'a';
+                hasB = hasB || itemName === 'b';
+                hasC = hasC || itemName === 'c';
+                hasD = hasD || itemName === 'd';
+                hasE = hasE || itemName === 'e';
+                hasF = hasF || itemName === 'f';
+            }
+
+            hasA.should.ok();
+            hasB.should.ok();
+            hasC.should.not.ok();
+            hasD.should.ok();
+            hasE.should.ok();
+            hasF.should.not.ok();
         });
     });
 });
