@@ -42,7 +42,7 @@ exports.sleep = sleep;
  */
 const getFromBodyOrQueryOrParams = (req, keyword) => req && (
     (typeof req.body === 'object' && req.body && req.body[keyword])
-    || (typeof req.query === 'object' && req.query && req.quer[keyword])
+    || (typeof req.query === 'object' && req.query && req.query[keyword])
     || (typeof req.params === 'object' && req.params && req.params[keyword])
 );
 exports.getFromBodyOrQueryOrParams = getFromBodyOrQueryOrParams;
