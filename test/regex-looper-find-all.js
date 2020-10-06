@@ -35,5 +35,16 @@ describe('#regex-looper/find-all', () => {
                 { pattern: '10000', keyword: 'XL10' },
             ],
         ).map((item) => (item.keyword)).should.containEql('S10', 'XL10');
+
+        regexLooperFindAll(
+            'Pembelian sebesar Rp. 5000 BERHASIL',
+            [
+                { pattern: '5000', keyword: 'S5' },
+                { pattern: '5000', keyword: 'XL5' },
+                { pattern: '10000', keyword: 'S10' },
+                { pattern: '10000', keyword: 'XL10' },
+            ],
+            true,
+        ).keyword.should.equal('S5');
     });
 });

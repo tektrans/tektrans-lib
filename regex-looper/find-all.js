@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-const MODULE_NAME = 'REGEX-LOOPER/FIND-ALL';
+// const MODULE_NAME = 'REGEX-LOOPER/FIND-ALL';
 
 /**
  * Find all matches of rules on a string
@@ -9,9 +9,10 @@ const MODULE_NAME = 'REGEX-LOOPER/FIND-ALL';
  * @param {Object[]} rules - array of rules
  * @param {string} rules[].pattern - regex pattern
  * @param {string} [rules[].flags] - regex flags/options
- * @returns {Object[]} array of matched rules
+ * @param {boolean} returnOneRule - is only return object of first match
+ * @returns {Object[]|Object} matched
  */
-module.exports = (str, rules, debug) => {
+module.exports = (str, rules, returnOneRule) => {
     if (
         !str || typeof str !== 'string'
         || !rules || !Array.isArray(rules) || !rules.length
@@ -24,15 +25,13 @@ module.exports = (str, rules, debug) => {
         const { pattern } = rule;
         const flags = rule.flags || rule.flag || rule.options || rule.option;
 
-        if (debug) {
-            console.log(`* DEBUG: ${MODULE_NAME}: `, { pattern, flags });
-        }
-
         const re = new RegExp(pattern, flags);
         if (str.search(re) >= 0) {
             result.push(rule);
+            if (returnOneRule) break;
         }
     }
 
-    return result || [];
+    return returnOneRule ? (result && result[0]) || null
+        : result || [];
 };

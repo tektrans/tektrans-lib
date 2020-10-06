@@ -2,7 +2,7 @@
 
 require('should');
 
-const regexLooperFind = require('../regex-looper/find');
+const regexLooperFind = require('../regex-looper/first-match');
 
 describe('#regex-looper/find', () => {
     it('should return corect result', () => {
