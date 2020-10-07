@@ -33,5 +33,5 @@ module.exports = (str, rules) => {
         }
     }
 
-    return { result, rule: matchedRule } || null;
+    return (result && { result, rule: matchedRule }) || null;
 };
