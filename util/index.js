@@ -59,6 +59,7 @@ exports.getFromBodyOrQueryOrParams = getFromBodyOrQueryOrParams;
  */
 const isAStringWithTrueValue = (str) => {
     if (!str) return false;
+    if (typeof str === 'number') return !!str;
     if (typeof str !== 'string') return false;
     if (!(str || '').trim()) return false;
 
