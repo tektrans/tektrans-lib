@@ -7,6 +7,27 @@ const util = require('../util');
 const MAX_LOOP = 200;
 
 describe('#util', () => {
+    describe('#isAStringWithTrueValue', () => {
+        it('should return correct boolean value', () => {
+            util.isAStringWithTrueValue(0).should.not.ok();
+            util.isAStringWithTrueValue(1).should.ok();
+            util.isAStringWithTrueValue(-1).should.ok();
+
+            util.isAStringWithTrueValue('1').should.ok();
+            util.isAStringWithTrueValue('0').should.not.ok();
+            util.isAStringWithTrueValue('-1').should.ok();
+
+            util.isAStringWithTrueValue('YES').should.ok();
+            util.isAStringWithTrueValue('NO').should.not.ok();
+
+            util.isAStringWithTrueValue([]).should.not.ok();
+            util.isAStringWithTrueValue([1]).should.ok();
+
+            util.isAStringWithTrueValue({}).should.not.ok();
+            util.isAStringWithTrueValue({ a: 1 }).should.ok();
+        });
+    });
+
     describe('#random', () => {
         it('should return integer correct value in range', () => {
             const max = 10;

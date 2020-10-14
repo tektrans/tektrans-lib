@@ -60,12 +60,14 @@ exports.getFromBodyOrQueryOrParams = getFromBodyOrQueryOrParams;
 const isAStringWithTrueValue = (str) => {
     if (!str) return false;
     if (typeof str === 'number') return !!str;
-    if (typeof str !== 'string') return false;
-    if (!(str || '').trim()) return false;
+    if (Array.isArray(str)) return !!str.length;
+    if (typeof str === 'object') return !!Object.entries(str).length;
+    if (typeof str !== 'string') return !!str;
 
-    if (FALSE_STRINGS.indexOf((str || '').trim().toUpperCase() >= 0)) return false;
+    const strToCheck = str.trim().toUpperCase();
+    if (!strToCheck) return false;
 
-    return true;
+    return FALSE_STRINGS.indexOf(strToCheck) < 0;
 };
 exports.isAStringWithTrueValue = isAStringWithTrueValue;
 
